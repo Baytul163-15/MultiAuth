@@ -1,3 +1,7 @@
+@php
+  $prefix = Request::route()->getPrefix();
+  $route = Route::current()->getName();
+@endphp
 <aside class="main-sidebar">
   <!-- sidebar-->
   <section class="sidebar">
@@ -16,56 +20,83 @@
 
     <!-- sidebar menu-->
     <ul class="sidebar-menu" data-widget="tree">
-
-  <li>
-        <a href="index.html">
+     <li class="{{ ($route == 'dashboard')? 'active':'' }}">
+        <a href="{{ url('admin/dashboard') }}">
           <i data-feather="pie-chart"></i>
-    <span>Dashboard</span>
+          <span>Dashboard</span>
         </a>
       </li>
 
-      <li class="treeview">
+      <li class="treeview {{ ($prefix == '/brand')? 'active':'' }}">
         <a href="#">
           <i data-feather="message-circle"></i>
-          <span>Application</span>
+          <span>Brands</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="chat.html"><i class="ti-more"></i>Chat</a></li>
+          <li class="{{ ($route == 'all.brand')? 'active':'' }}">
+            <a href="{{ route('all.brand') }}"><i class="ti-more"></i>All Brand</a></li>
           <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
         </ul>
       </li>
 
-      <li class="treeview">
+      <li class="treeview {{ ($prefix == '/category')? 'active':'' }}">
         <a href="#">
-          <i data-feather="mail"></i> <span>Mailbox</span>
+          <i data-feather="mail"></i> <span>Category</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="mailbox_inbox.html"><i class="ti-more"></i>Inbox</a></li>
-          <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
-          <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
+          <li class="{{ ($route == 'all.category')? 'active':'' }}">
+            <a href="{{ route('all.category') }}"><i class="ti-more"></i>All Category</a>
+          </li>
+          <li class="{{ ($route == 'all.subcategory')? 'active':'' }}">
+            <a href="{{ route('all.subcategory') }}"><i class="ti-more"></i>Sub Category</a>
+          </li>
+          <li class="{{ ($route == 'all.subsubcategory')? 'active':'' }}">
+            <a href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>Sub Subcategory</a>
+          </li>
         </ul>
       </li>
 
-      <li class="treeview">
+      <li class="treeview {{ ($prefix == '/product')? 'active':'' }}">
         <a href="#">
           <i data-feather="file"></i>
-          <span>Pages</span>
+          <span>Product</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
-          <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
-          <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-          <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-          <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
+          <li class="{{ ($route == 'product.add')? 'active':'' }}">
+            <a href="{{ route('product.add') }}"><i class="ti-more"></i>Add Product</a>
+          </li>
+          <li class="{{ ($route == 'product.manage')? 'active':'' }}">
+            <a href="{{ route('product.manage') }}"><i class="ti-more"></i>Manage Product</a>
+          </li>
+          <li><a href="gallery.html"><i class="ti-more"></i>Payment </a></li>
+        </ul>
+      </li>
+
+      <li class="treeview {{ ($prefix == '/slider')? 'active':'' }}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Slider</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ ($route == 'slider.view')? 'active':'' }}">
+            <a href="{{ route('slider.view') }}"><i class="ti-more"></i>Add Slider</a>
+          </li>
+          <li>
+            <a href="#"><i class="ti-more"></i>Manage Slider</a>
+          </li>
+          <li><a href="gallery.html"><i class="ti-more"></i>Payment </a></li>
         </ul>
       </li>
 
