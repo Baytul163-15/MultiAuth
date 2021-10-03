@@ -16,13 +16,13 @@
                         <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Image</th>
-                                <th>Product Eng</th>
-                                <th>Seeling Price</th>
-                                <th>Quantity</th>
-                                <th>Discount</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th style="width:10%">Image</th>
+                                <th style="width:30%">Product Eng</th>
+                                <th style="width:10%">Seeling Price</th>
+                                <th style="width:10%">Quantity</th>
+                                <th style="width:10%">Discount</th>
+                                <th style="width:10%">Status</th>
+                                <th style="width:20%">Action</th>
                             </tr>
                         </thead>
                         <tbody>

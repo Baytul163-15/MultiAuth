@@ -29,11 +29,11 @@
                         <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Slider Image</th>
-                                <th>Slider Title</th>
-                                <th>Slider Description</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th style="width:10%">Slider Image</th>
+                                <th style="width:20%">Slider Title</th>
+                                <th style="width:40%">Slider Description</th>
+                                <th style="width:10%">Status</th>
+                                <th style="width:20%">Action</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -39,6 +39,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['admin:admin']], function(){
 ############################### Backend All Routes ###############################
 ################################################################################
 
+
 ############################### Admin Profile All Routes ###############################
 
 Route::middleware(['auth:admin'])->group(function(){
@@ -65,7 +66,7 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
 });
 
-############################### All Brand Routs ################################
+############################### Brand All Routs ################################
 
 Route::prefix('brand')->group(function(){
 
@@ -88,7 +89,7 @@ Route::prefix('brand')->group(function(){
     Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
 });
 
-############################### All Category Routs ################################
+############################### Category All Routs ################################
 
 Route::prefix('category')->group(function(){
 
@@ -111,7 +112,7 @@ Route::prefix('category')->group(function(){
     Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
 });
 
-############################### All SubCategory Routs ################################
+############################### SubCategory All Routs ################################
 
 Route::prefix('subcategory')->group(function(){
 
@@ -134,7 +135,7 @@ Route::prefix('subcategory')->group(function(){
     Route::get('/delete/{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('subcategory.delete');
 });
 
-############################### All SubSubCategory Routs ################################
+############################### SubSubCategory All Routs ################################
 
 Route::prefix('subsubcategory')->group(function(){
 
@@ -165,7 +166,7 @@ Route::get('/category/subcategory/ajax/{category_id}', [SubSubCategoryController
 #SubCategory_View_Delete
 Route::get('/category/sub-subcategory/ajax/{subcategory_id}', [SubSubCategoryController::class, 'GetSubSubCategory']);
 
-############################### All Product Routs ################################
+############################### Product All Routs ################################
 
 Route::prefix('product')->group(function(){
 
@@ -203,7 +204,7 @@ Route::prefix('product')->group(function(){
     Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
 });
 
-############################### All Sliders Routs ################################
+############################### Sliders All Routs ################################
 
 Route::prefix('slider')->group(function(){
 
@@ -267,8 +268,11 @@ Route::get('/user/change/password', [IndexController::class, 'UserPasswordChange
 #User_Change_Password_Show
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
+
 ############################### Multi-Language #########################
 
-
+#Bnagla/Hindi Language
 Route::get('/hindi/language', [LanguageController::class, 'HindiLanguage'])->name('hindi.language');
+
+#English Language Route
 Route::get('/english/language', [LanguageController::class, 'EnglishLanguage'])->name('english.language');

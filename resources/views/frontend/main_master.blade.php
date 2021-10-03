@@ -25,6 +25,7 @@
 
 <!-- Icons/Glyphs -->
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/font-awesome.css') }}">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 {{-- Toster CDN CSS Link --}}
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
