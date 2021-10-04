@@ -9,4 +9,9 @@ class MultiImg extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    #Relationship between Product table
+    public function category(){
+        return $this->belongsTo(Product::class, 'product_id','id');
+    }
 }

@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\MultiImg;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -18,7 +20,19 @@ class IndexController extends Controller
         $products = Product::where('status',1)->orderBy('id','DESC')->limit(6)->get();
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $categories = Category::orderBy('category_name_eng','ASC')->get();
-        return view('frontend.index', compact('categories','sliders','products'));
+        $featured = Product::where('featured',1)->orderBy('id','DESC')->limit(6)->get();
+        $hotdeals = Product::where('hot_deals',1)->orderBy('id','DESC')->limit(3)->get();
+        $special_offer = Product::where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();
+        $special_deals = Product::where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();
+        $scape_category_6 = Category::skip(6)->first();
+        $scape_product_6 = Product::where('status',1)->where('category_id',$scape_category_6->id)->orderBy('id','DESC')->get();
+        $scape_category_1 = Category::skip(1)->first();
+        $scape_cat_product_1 = Product::where('status',1)->where('category_id',$scape_category_1->id)->orderBy('id','DESC')->get();
+        $scape_brand_1 = Brand::skip(1)->first();
+        $scape_brand_product_1 = Product::where('status',1)->where('brand_id',$scape_brand_1->id)->orderBy('id','DESC')->get();
+        return view('frontend.index', compact('categories','sliders','products','featured',
+                    'hotdeals','special_offer','special_deals','scape_category_6','scape_product_6',
+                    'scape_category_1','scape_cat_product_1','scape_brand_1','scape_brand_product_1'));
     }
 
     public function UserLogout(){
@@ -76,5 +90,11 @@ class IndexController extends Controller
         }else{
             return redirect()->back();
         }
+    }
+
+    public function ProductDetails($id,$slug){
+        $products = Product::findOrFail($id);
+        $multiimage = MultiImg::where('product_id',$id)->get();
+        return view('frontend.product.product_details',compact('products','multiimage'));
     }
 }
