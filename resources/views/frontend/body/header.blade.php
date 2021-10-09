@@ -1,7 +1,6 @@
 
 
 <header class="header-style-1"> 
-  
     <!-- ============================================== TOP MENU ============================================== -->
     <div class="top-bar animate-dropdown">
       <div class="container">
@@ -172,14 +171,18 @@
 
                             @foreach($subcategories as $subcategory)
                             <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                              <h2 class="title">@if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif</h2>
+                              <a href="{{ url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}">
+                                <h2 class="title">@if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif</h2>
+                              </a>  
                               @php
                                 $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en','ASC')->get();
                               @endphp
 
                               @foreach($subsubcategories as $subsubcategory)
                               <ul class="links">
-                                <li><a href="#">@if(session()->get('language') == 'hindi') {{ $subsubcategory->subsubcategory_name_hin }} @else {{ $subsubcategory->subsubcategory_name_en }} @endif</a></li>
+                                <li><a href="{{ url('subsubcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en) }}">
+                                  @if(session()->get('language') == 'hindi') {{ $subsubcategory->subsubcategory_name_hin }} @else {{ $subsubcategory->subsubcategory_name_en }} @endif
+                                </a></li>
                               </ul>
                               @endforeach
                             </div>
@@ -212,5 +215,4 @@
     </div>
     <!-- /.header-nav --> 
     <!-- ============================================== NAVBAR : END ============================================== --> 
-    
   </header>

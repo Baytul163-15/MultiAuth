@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -234,7 +235,7 @@ Route::prefix('slider')->group(function(){
 });
 
 ##################################################################################
-############################### User All Routes ##################################
+############################### Frontend User Profile All Routes #################
 ##################################################################################
 
 #User_Dashbord
@@ -268,6 +269,9 @@ Route::get('/user/change/password', [IndexController::class, 'UserPasswordChange
 #User_Change_Password_Show
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
+##################################################################################
+############################### Frontend All Routes ##############################
+##################################################################################
 
 ############################### Multi-Language #########################
 
@@ -279,5 +283,20 @@ Route::get('/english/language', [LanguageController::class, 'EnglishLanguage'])-
 
 ################################## Product Details ######################
 
-#Pproduct_details_Page
-Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+#Product_details_Page
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
+#Product_Tags_Page
+Route::get('/product/tag/{tag}', [IndexController::class, 'TagwizeProduct']);
+
+#Subcategory wise Product
+Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+
+#Subsubcategory wise Product
+Route::get('/subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCatWiseProduct']);
+
+#Product View Model with Ajax
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+#Add to Cart with Ajax
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
