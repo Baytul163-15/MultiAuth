@@ -300,3 +300,9 @@ Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax
 
 #Add to Cart with Ajax
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+#Add to Mini Cart with Ajax
+Route::get('/product/mini/cart/', [CartController::class, 'AddToMiniCart']);
+
+#Mini Cart Product Removed with Ajax
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
