@@ -289,7 +289,8 @@
                                 <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
                                 <div class="price">${value.price} * ${value.qty}</div>
                                 </div>
-                                <div class="col-xs-1 action"> <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div> </div>
+                                <div class="col-xs-1 action"> <button type="submit" id="${value.rowId}" 
+                                    onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div> </div>
                             </div>
                             </div>
                             <!-- /.cart-item -->
@@ -302,7 +303,7 @@
         }
         miniCart();
 
-        //// mini cart remove Start 
+    //// mini cart remove Start 
     function miniCartRemove(rowId){
         $.ajax({
             type: 'GET',
@@ -333,7 +334,83 @@
             }
         });
     }
- //  end mini cart remove
+    //  end mini cart remove
+    </script>
+
+    {{-- Add to product wishlist --}}
+    <script type="text/javascript">
+        function addToWishlist(product_id){
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/"+product_id,
+
+                success:function(data){
+                    
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                        })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    }else{
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+
+    {{-- Wishlist Page View Data --}}
+    <script type="text/javascript">
+
+        function wishlist(){
+            $.ajax({
+                type: 'GET',
+                url: '/get-wishlist-product',
+                dataType: 'json',
+                success: function(response){
+                    // console.log(response)
+                    
+                    var rows = ""
+                    
+                    $.each(response, function(key,value){
+                        rows += `<tr>
+                        <td class="col-md-2"><img src="/${value.product.product_thambnail}" alt="imga"></td>
+                        <td class="col-md-7">
+                            <div class="product-name"><a href="#">${value.product.product_name_en}</a></div>
+                            <div class="price">
+                                ${value.product.discount_price == null ?
+                                    `${value.product.selling_price}` :
+                                    `${value.product.discount_price} <span>${value.product.selling_price}</span>`
+                                }
+                            </div>
+                        </td>
+                        <td class="col-md-2">
+                            <a href="#" class="btn-upper btn btn-primary">Add to cart</a>
+                        </td>
+                        <td class="col-md-1 close-btn">
+                            <a href="#" class=""><i class="fa fa-times"></i></a>
+                        </td>
+                    </tr>`
+                    });
+                    $('#wishlist').html(rows);
+                }
+            })
+        }
+        wishlist();
 
     </script>
 
