@@ -91,10 +91,26 @@
         </a>
         <ul class="treeview-menu">
           <li class="{{ ($route == 'slider.view')? 'active':'' }}">
-            <a href="{{ route('slider.view') }}"><i class="ti-more"></i>Add Slider</a>
+            <a href="{{ route('slider.view') }}"><i class="ti-more"></i>Manage Slider</a>
           </li>
           <li>
-            <a href="#"><i class="ti-more"></i>Manage Slider</a>
+            <a href="#"><i class="ti-more"></i>Slider</a>
+          </li>
+          <li><a href="gallery.html"><i class="ti-more"></i>Payment </a></li>
+        </ul>
+      </li>
+
+      <li class="treeview {{ ($prefix == '/cupons')? 'active':'' }}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Cupons</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ ($route == 'cupons.view')? 'active':'' }}">
+            <a href="{{ route('cupons.view') }}"><i class="ti-more"></i>Manage Cupon</a>
           </li>
           <li><a href="gallery.html"><i class="ti-more"></i>Payment </a></li>
         </ul>

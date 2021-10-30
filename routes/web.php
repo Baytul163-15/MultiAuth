@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\Backend\AdminProfileController; 
 use App\Http\Controllers\Backend\BrandController;    
 use App\Http\Controllers\Backend\CategoryController;
@@ -12,10 +13,15 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CuponController;
+
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\User\WishlistController;
+
+use App\Http\Controllers\User\WishlistController;  
+use App\Http\Controllers\User\CartPageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -308,7 +314,7 @@ Route::get('/product/mini/cart/', [CartController::class, 'AddToMiniCart']);
 #Mini Cart Product Removed with Ajax
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
-################################## Product Wishlist ######################
+######################################## Product Wishlist #######################################
 
 Route::group(['prefix' =>'user','middleware' => ['user','auth'],'namespace' => 'User'],function(){
     
@@ -318,10 +324,51 @@ Route::group(['prefix' =>'user','middleware' => ['user','auth'],'namespace' => '
     #wishlist_Page
     Route::get('/wishlist', [WishlistController::class, 'WishlistView'])->name('wishlist');
 
-    #wishlist_Page
+    #wishlist_Product_Show
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
 
     #wishlist_Product Removed
-    Route::get('/wishlist-removed/{id}', [WishlistController::class, 'WishlistRemoved']);
+    Route::get('/wishlist-removed/{id}', [WishlistController::class, 'WishlistRemoved']);  
+
+    #My Cart Page
+    Route::get('/mycart', [CartPageController::class, 'MycartPage'])->name('mycart');
+
+    #Show Mycart Product
+    Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']); //     
+
+    #Mycart Removed Product
+    Route::get('/cart-removed/{rowId}', [CartPageController::class, 'CartProductRemoveed']);
+
+    #Mycart Removed Product
+    Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
+
+    #Mycart Removed Product
+    Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
+
 });
+
+
+############################### Admin Cupon All Routs ################################
+
+Route::prefix('cupons')->group(function(){
+
+    #Cupon_View_Page
+    Route::get('/view', [CuponController::class, 'CuponView'])->name('cupons.view');
+
+    #Cupon_Add_Page
+    Route::get('/add', [CuponController::class, 'CuponAdd'])->name('cupons.add');
+    
+    #Cupon_Store
+    Route::post('/store', [CuponController::class, 'CuponStore'])->name('cupons.store');
+    
+    #Cupon_Store
+    Route::get('/edit/{id}', [CuponController::class, 'CuponEdit'])->name('cupons.edit');
+
+    #Cupon_Update
+    Route::post('/update/{id}', [CuponController::class, 'CuponUpdate'])->name('cupons.update');
+
+    #Cupon_Update
+    Route::get('/delete/{id}', [CuponController::class, 'CuponDelete'])->name('cupons.delete');
+});
+    
 
