@@ -81,6 +81,7 @@
         </ul>
       </li>
 
+      {{-- Slider section --}}
       <li class="treeview {{ ($prefix == '/slider')? 'active':'' }}">
         <a href="#">
           <i data-feather="file"></i>
@@ -99,7 +100,8 @@
           <li><a href="gallery.html"><i class="ti-more"></i>Payment </a></li>
         </ul>
       </li>
-
+      
+      {{-- Coupon Section --}}
       <li class="treeview {{ ($prefix == '/cupons')? 'active':'' }}">
         <a href="#">
           <i data-feather="file"></i>
@@ -113,6 +115,25 @@
             <a href="{{ route('cupons.view') }}"><i class="ti-more"></i>Manage Cupon</a>
           </li>
           <li><a href="gallery.html"><i class="ti-more"></i>Payment </a></li>
+        </ul>
+      </li>
+
+      {{-- Shipping Section --}}
+      <li class="treeview {{ ($prefix == '/shipping')? 'active':'' }}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Shipping Area</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ ($route == 'manage-division')? 'active':'' }}">
+            <a href="{{ route('manage-division') }}"><i class="ti-more"></i>Ship Division</a>
+          </li>
+          <li class="{{ ($route == 'manage-district')? 'active':'' }}">
+            <a href="{{ route('manage-district') }}"><i class="ti-more"></i>Ship District</a>
+          </li>
         </ul>
       </li>
 

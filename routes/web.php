@@ -13,7 +13,8 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
-use App\Http\Controllers\Backend\CuponController;
+use App\Http\Controllers\Backend\CuponController;   
+use App\Http\Controllers\Backend\ShippingAreaController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
@@ -369,6 +370,48 @@ Route::prefix('cupons')->group(function(){
 
     #Cupon_Update
     Route::get('/delete/{id}', [CuponController::class, 'CuponDelete'])->name('cupons.delete');
+});
+
+############################### Admin shipping All Routs ################################
+
+Route::prefix('shipping')->group(function(){
+    #Division_View_Page
+    Route::get('/view', [ShippingAreaController::class, 'DivisionView'])->name('manage-division');
+
+    #Division_Add_Page
+    Route::get('/add', [ShippingAreaController::class, 'DivisionAdd'])->name('shipping.add'); //
+
+    #Division_Store
+    Route::post('/division/store', [ShippingAreaController::class, 'DivisionStore'])->name('division.store');
+
+    #Division_Edit
+    Route::get('/division/edit/{id}', [ShippingAreaController::class, 'DivisionEdit'])->name('division.edit'); 
+
+    #Division_Update
+    Route::post('/division/update/{id}', [ShippingAreaController::class, 'DivisionUpdate'])->name('division.update');
+
+    #Delete_Update
+    Route::get('/division/delete/{id}', [ShippingAreaController::class, 'DivisionDelete'])->name('division.delete');
+
+    //Shipping district
+    #Shipping_View_Page
+    Route::get('/district/view', [ShippingAreaController::class, 'DistrictView'])->name('manage-district');
+
+    #District_Add_Page
+    Route::get('/district/add', [ShippingAreaController::class, 'DistrictAdd'])->name('district.add');
+
+    #District_Store
+    Route::post('/district/store', [ShippingAreaController::class, 'DistrictStore'])->name('district.store');
+
+    #District_Edit
+    Route::get('/district/edit/{id}', [ShippingAreaController::class, 'DistrictEdit'])->name('district.edit');
+
+    #District_Update
+    Route::post('/district/update/{id}', [ShippingAreaController::class, 'DistrictUpdate'])->name('district.update');
+
+    #District_Update
+    Route::get('/district/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
+
 });
     
 
